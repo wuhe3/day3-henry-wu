@@ -3,11 +3,11 @@ import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
 
-    public static final String S = "\\s+";
-    public static final String LINE_BREAK = "\n";
+    private static final String WHITESPACE_REGEX = "\\s+";
+    private static final String NEWLINE = "\n";
 
     public String getWordFrequency(String sentence) {
-        String[] words = sentence.split(S);
+        String[] words = sentence.split(WHITESPACE_REGEX);
         if (words.length == 1) {
             return sentence + " 1";
         } else {
@@ -18,14 +18,14 @@ public class WordFrequencyGame {
     }
 
     private static String joinResult(List<WordFrequency> wordFrequencyList) {
-        StringJoiner joiner = new StringJoiner(LINE_BREAK);
+        StringJoiner joiner = new StringJoiner(NEWLINE);
         wordFrequencyList.forEach(wordFrequency ->
                 joiner.add(wordFrequency.getValue() + " " + wordFrequency.getWordCount()));
         return joiner.toString();
     }
 
     private static Map<String, Long> getInitialWordFrequencies(String sentence) {
-        return Arrays.stream(sentence.split("\\s+"))
+        return Arrays.stream(sentence.split(WHITESPACE_REGEX))
                 .collect(Collectors.groupingBy(word -> word, Collectors.counting()));
     }
 
