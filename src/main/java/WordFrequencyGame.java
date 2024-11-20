@@ -11,8 +11,7 @@ public class WordFrequencyGame {
         if (words.length == 1) {
             return sentence + " 1";
         } else {
-            Map<String, Long> wordFrequencyMap = getInitialWordFrequencies(words);
-            List<WordFrequency> wordFrequencyList = getWordFrequencies(wordFrequencyMap);
+            List<WordFrequency> wordFrequencyList = getWordFrequencies(words);
             return joinResult(wordFrequencyList);
         }
     }
@@ -24,13 +23,11 @@ public class WordFrequencyGame {
         return joiner.toString();
     }
 
-    private static Map<String, Long> getInitialWordFrequencies(String[] words) {
+    private List<WordFrequency> getWordFrequencies(String[] words) {
         return Arrays.stream(words)
-                .collect(Collectors.groupingBy(word -> word, Collectors.counting()));
-    }
-
-    private List<WordFrequency> getWordFrequencies(Map<String, Long> wordFrequencyMap) {
-        return wordFrequencyMap.entrySet().stream()
+                .collect(Collectors.groupingBy(word -> word, Collectors.counting()))
+                .entrySet()
+                .stream()
                 .map(entry -> new WordFrequency(entry.getKey(), entry.getValue().intValue()))
                 .sorted((w1, w2) -> w2.getWordCount() - w1.getWordCount())
                 .collect(Collectors.toList());
