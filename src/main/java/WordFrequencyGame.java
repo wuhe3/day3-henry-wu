@@ -19,17 +19,21 @@ public class WordFrequencyGame {
 
                 wordFrequencyList = getWordFrequencies(wordFrequencyList);
 
-                StringJoiner joiner = new StringJoiner(LINE_BREAK);
-
-                wordFrequencyList.forEach(wordFrequency ->
-                        joiner.add(wordFrequency.getValue() + " " + wordFrequency.getWordCount()));
-
-                return joiner.toString();
+                return joinResult(wordFrequencyList);
             } catch (Exception e) {
 
                 return "Calculate Error";
             }
         }
+    }
+
+    private static String joinResult(List<WordFrequency> wordFrequencyList) {
+        StringJoiner joiner = new StringJoiner(LINE_BREAK);
+
+        wordFrequencyList.forEach(wordFrequency ->
+                joiner.add(wordFrequency.getValue() + " " + wordFrequency.getWordCount()));
+
+        return joiner.toString();
     }
 
     private static List<WordFrequency> getWordFrequencies(String sentence) {
