@@ -35,13 +35,10 @@ public class WordFrequencyGame {
 
                 //get the wordToFrequency for the next step of sizing the same word
                 Map<String, List<WordFrequency>> wordToFrequency = getListMap(wordFrequencyList);
-                
+
                 List<WordFrequency> tempWordFrequencyList = wordToFrequency.entrySet().stream()
                         .map(entry -> new WordFrequency(entry.getKey(), entry.getValue().size()))
                         .collect(Collectors.toList());
-
-
-
 
 
                 wordFrequencyList = tempWordFrequencyList;
@@ -49,10 +46,10 @@ public class WordFrequencyGame {
                 wordFrequencyList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 
                 StringJoiner joiner = new StringJoiner(LINE_BREAK);
-                for (WordFrequency wordFrequency : wordFrequencyList) {
-                    String s = wordFrequency.getValue() + " " + wordFrequency.getWordCount();
-                    joiner.add(s);
-                }
+
+                wordFrequencyList.forEach(wordFrequency ->
+                        joiner.add(wordFrequency.getValue() + " " + wordFrequency.getWordCount()));
+
                 return joiner.toString();
             } catch (Exception e) {
 
