@@ -8,10 +8,17 @@ import java.util.*;
 // extract: method
 // temp field? inputList = list;
 
+
+
+
 public class WordFrequencyGame {
+
+    public static final String S = "\\s+";
+    public static final String LINE_BREAK = "\n";
+
     public String getWordFrequency(String sentence) {
 
-        if (sentence.split("\\s+").length == 1) {
+        if (sentence.split(S).length == 1) {
             return sentence + " 1";
         } else {
 
@@ -38,7 +45,7 @@ public class WordFrequencyGame {
 
                 wordFrequencyList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 
-                StringJoiner joiner = new StringJoiner("\n");
+                StringJoiner joiner = new StringJoiner(LINE_BREAK);
                 for (WordFrequency wordFrequency : wordFrequencyList) {
                     String s = wordFrequency.getValue() + " " + wordFrequency.getWordCount();
                     joiner.add(s);
