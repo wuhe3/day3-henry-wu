@@ -10,7 +10,6 @@ public class WordFrequencyGame {
         if (sentence.split(S).length == 1) {
             return sentence + " 1";
         } else {
-            // split the input string with 1 to n pieces of spaces
             List<WordFrequency> wordFrequencyList = getInitialWordFrequencies(sentence);
             wordFrequencyList = getWordFrequencies(wordFrequencyList);
             return joinResult(wordFrequencyList);
@@ -39,16 +38,7 @@ public class WordFrequencyGame {
     }
 
     private Map<String, List<WordFrequency>> getListMap(List<WordFrequency> wordFrequencyList) {
-        Map<String, List<WordFrequency>> frequencyMap = new HashMap<>();
-        for (WordFrequency wordFrequency : wordFrequencyList) {
-            if (!frequencyMap.containsKey(wordFrequency.getValue())) {
-                ArrayList<WordFrequency> arr = new ArrayList<>();
-                arr.add(wordFrequency);
-                frequencyMap.put(wordFrequency.getValue(), arr);
-            } else {
-                frequencyMap.get(wordFrequency.getValue()).add(wordFrequency);
-            }
-        }
-        return frequencyMap;
+        return wordFrequencyList.stream()
+                .collect(Collectors.groupingBy(WordFrequency::getValue));
     }
 }
