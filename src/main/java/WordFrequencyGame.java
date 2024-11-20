@@ -7,38 +7,25 @@ public class WordFrequencyGame {
     public static final String LINE_BREAK = "\n";
 
     public String getWordFrequency(String sentence) {
-
         if (sentence.split(S).length == 1) {
             return sentence + " 1";
         } else {
-
-            try {
-
-                //split the input string with 1 to n pieces of spaces
-                List<WordFrequency> wordFrequencyList = getInitialWordFrequencies(sentence);
-
-                wordFrequencyList = getWordFrequencies(wordFrequencyList);
-
-                return joinResult(wordFrequencyList);
-            } catch (Exception e) {
-
-                return "Calculate Error";
-            }
+            // split the input string with 1 to n pieces of spaces
+            List<WordFrequency> wordFrequencyList = getInitialWordFrequencies(sentence);
+            wordFrequencyList = getWordFrequencies(wordFrequencyList);
+            return joinResult(wordFrequencyList);
         }
     }
 
     private static String joinResult(List<WordFrequency> wordFrequencyList) {
         StringJoiner joiner = new StringJoiner(LINE_BREAK);
-
         wordFrequencyList.forEach(wordFrequency ->
                 joiner.add(wordFrequency.getValue() + " " + wordFrequency.getWordCount()));
-
         return joiner.toString();
     }
 
     private static List<WordFrequency> getInitialWordFrequencies(String sentence) {
         String[] words = sentence.split("\\s+");
-
         return Arrays.stream(words)
                 .map(word -> new WordFrequency(word, 1))
                 .collect(Collectors.toList());
@@ -62,8 +49,6 @@ public class WordFrequencyGame {
                 frequencyMap.get(wordFrequency.getValue()).add(wordFrequency);
             }
         }
-
         return frequencyMap;
     }
-
 }
