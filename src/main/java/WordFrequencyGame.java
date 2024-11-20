@@ -15,7 +15,7 @@ public class WordFrequencyGame {
             try {
 
                 //split the input string with 1 to n pieces of spaces
-                List<WordFrequency> wordFrequencyList = getWordFrequencies(sentence);
+                List<WordFrequency> wordFrequencyList = getInitialWordFrequencies(sentence);
 
                 wordFrequencyList = getWordFrequencies(wordFrequencyList);
 
@@ -36,7 +36,7 @@ public class WordFrequencyGame {
         return joiner.toString();
     }
 
-    private static List<WordFrequency> getWordFrequencies(String sentence) {
+    private static List<WordFrequency> getInitialWordFrequencies(String sentence) {
         String[] words = sentence.split("\\s+");
 
         return Arrays.stream(words)
