@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 // todo 2024//11/20 14:05:
 // useless - if else
@@ -34,12 +35,15 @@ public class WordFrequencyGame {
 
                 //get the wordToFrequency for the next step of sizing the same word
                 Map<String, List<WordFrequency>> wordToFrequency = getListMap(wordFrequencyList);
+                
+                List<WordFrequency> tempWordFrequencyList = wordToFrequency.entrySet().stream()
+                        .map(entry -> new WordFrequency(entry.getKey(), entry.getValue().size()))
+                        .collect(Collectors.toList());
 
-                List<WordFrequency> tempWordFrequencyList = new ArrayList<>();
-                for (Map.Entry<String, List<WordFrequency>> entry : wordToFrequency.entrySet()) {
-                    WordFrequency wordFrequency = new WordFrequency(entry.getKey(), entry.getValue().size());
-                    tempWordFrequencyList.add(wordFrequency);
-                }
+
+
+
+
                 wordFrequencyList = tempWordFrequencyList;
 
                 wordFrequencyList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
