@@ -1,8 +1,7 @@
 import java.util.*;
 
 // todo 2024//11/20 14:05:
-// reformat, empty space
-// unless code, import, if else
+// useless - if else
 // rename, getResult, input, arr, exception msg
 // magic string '/'
 // stream instead of for loop
@@ -10,16 +9,16 @@ import java.util.*;
 // temp field? inputList = list;
 
 public class WordFrequencyGame {
-    public String getResult(String inputStr) {
+    public String getWordFrequency(String sentence) {
 
-        if (inputStr.split("\\s+").length == 1) {
-            return inputStr + " 1";
+        if (sentence.split("\\s+").length == 1) {
+            return sentence + " 1";
         } else {
 
             try {
 
                 //split the input string with 1 to n pieces of spaces
-                String[] arr = inputStr.split("\\s+");
+                String[] arr = sentence.split("\\s+");
 
                 List<Input> inputList = new ArrayList<>();
                 for (String s : arr) {
