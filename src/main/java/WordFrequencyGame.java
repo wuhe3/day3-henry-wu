@@ -7,7 +7,8 @@ public class WordFrequencyGame {
     public static final String LINE_BREAK = "\n";
 
     public String getWordFrequency(String sentence) {
-        if (sentence.split(S).length == 1) {
+        String[] words = sentence.split(S);
+        if (words.length == 1) {
             return sentence + " 1";
         } else {
             List<WordFrequency> wordFrequencyList = getInitialWordFrequencies(sentence);
