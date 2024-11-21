@@ -7,21 +7,17 @@ public class WordFrequencyGame {
     private static final String NEWLINE = "\n";
     public static final String SPACE = " ";
 
-    public String getWordFrequency(String sentence) {
-        String[] words = sentence.split(WHITESPACE_REGEX);
-        if (words.length == 1) {
-            return sentence + " 1";
-        } else {
-            List<WordFrequency> wordFrequencyList = getWordFrequencies(words);
-            return joinResult(wordFrequencyList);
-        }
-    }
-
     private static String joinResult(List<WordFrequency> wordFrequencyList) {
         return wordFrequencyList.stream()
                 .map(wordFrequency -> wordFrequency.getValue() + SPACE + wordFrequency.getWordCount())
                 .collect(Collectors.joining(NEWLINE));
     }
+
+    public String getWordFrequency(String sentence) {
+        String[] words = sentence.split(WHITESPACE_REGEX);
+        List<WordFrequency> wordFrequencyList = getWordFrequencies(words);
+        return joinResult(wordFrequencyList);
+        }
 
     private List<WordFrequency> getWordFrequencies(String[] words) {
         return Arrays.stream(words)
