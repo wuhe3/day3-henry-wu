@@ -5,6 +5,7 @@ public class WordFrequencyGame {
 
     private static final String WHITESPACE_REGEX = "\\s+";
     private static final String NEWLINE = "\n";
+    public static final String SPACE = " ";
 
     public String getWordFrequency(String sentence) {
         String[] words = sentence.split(WHITESPACE_REGEX);
@@ -19,7 +20,7 @@ public class WordFrequencyGame {
     private static String joinResult(List<WordFrequency> wordFrequencyList) {
         StringJoiner joiner = new StringJoiner(NEWLINE);
         wordFrequencyList.forEach(wordFrequency ->
-                joiner.add(wordFrequency.getValue() + " " + wordFrequency.getWordCount()));
+                joiner.add(wordFrequency.getValue() + SPACE + wordFrequency.getWordCount()));
         return joiner.toString();
     }
 
@@ -29,7 +30,7 @@ public class WordFrequencyGame {
                 .entrySet()
                 .stream()
                 .map(entry -> new WordFrequency(entry.getKey(), entry.getValue().intValue()))
-                .sorted((w1, w2) -> w2.getWordCount() - w1.getWordCount())
+                .sorted((curr, next) -> next.getWordCount() - curr.getWordCount())
                 .collect(Collectors.toList());
     }
 }
