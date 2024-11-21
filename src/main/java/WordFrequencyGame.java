@@ -18,10 +18,9 @@ public class WordFrequencyGame {
     }
 
     private static String joinResult(List<WordFrequency> wordFrequencyList) {
-        StringJoiner joiner = new StringJoiner(NEWLINE);
-        wordFrequencyList.forEach(wordFrequency ->
-                joiner.add(wordFrequency.getValue() + SPACE + wordFrequency.getWordCount()));
-        return joiner.toString();
+        return wordFrequencyList.stream()
+                .map(wordFrequency -> wordFrequency.getValue() + SPACE + wordFrequency.getWordCount())
+                .collect(Collectors.joining(NEWLINE));
     }
 
     private List<WordFrequency> getWordFrequencies(String[] words) {
